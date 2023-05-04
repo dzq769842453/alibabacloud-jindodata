@@ -228,3 +228,13 @@ Valid starting     Expires            Service principal
 ```
 org.apache.hadoop.security.AccessControlException: Permission denied: user=test, access=READ_EXECUTE, resourcePath="bucket-test-hangzhou/"
 ```
+##7.集成之后出现gateway机器运行hadoop fs -ls 命令报not an authorized user错误, master正常访问的情况:
+解决方案:
+	在 JindoData 服务页面选择`配置` > `namespace` > `新增配置项`，添加如下参数。
+	namespace.oss.credential.provider   ECS_ROLE
+	在 JindoData 服务页面选择`配置` > `default` > `新增配置项`，添加如下参数。
+	default.credential.provider         ECS_ROLE
+在gateway机器运行命令:
+	sudo yum install krb5-workstation cyrus-sasl-gssapi cyrus-sasl-plain
+	gateway机器报错解决
+	
